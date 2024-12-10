@@ -6,6 +6,9 @@
   >
     <div>
       <h1 class="header-text">
+        <span @click="toggleSideNav">
+        <KIcon icon="menu"  />
+        </span>
         <span :class="{ code: codeStyle }">{{ title }}</span>
         <a
           href="#"
@@ -89,6 +92,9 @@
       },
       updateHighlight() {
         this.highlighed = ['', '#'].includes(window.location.hash);
+      },
+      toggleSideNav() {
+        this.$emit('update-side-nav', true); // Emit value to parent
       },
     },
   };

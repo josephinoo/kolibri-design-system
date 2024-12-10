@@ -14,6 +14,7 @@
             :showBackground="true"
           />
           <span class="header-text">Design System</span>
+          <span @click="closeSideNav"> <KIcon icon="close"/></span>
         </h1>
 
         <DocsFilter v-model="filterText" />
@@ -99,6 +100,9 @@
       throttleHandleScroll: throttle(function handleScroll() {
         window.sessionStorage.setItem('nav-scroll', this.$refs.links.scrollTop);
       }, 100),
+      closeSideNav() {
+        this.$emit('update-side-nav', false);
+      },
     },
   };
 
@@ -146,6 +150,7 @@
     left: 0;
     z-index: 100;
     width: $nav-width;
+    transition: transform 0.3s ease;
   }
 
   .sidenav {

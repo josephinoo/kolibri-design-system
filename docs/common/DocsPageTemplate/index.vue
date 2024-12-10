@@ -1,12 +1,13 @@
 <template>
 
   <div class="content-wrapper">
-    <SideNav />
+    <SideNav :class="{ show: isSideNavVisible, 'side-nav': true }" @update-side-nav="handleSideNavUpdate"/>
     <Header
       :sections="pageSections"
       :title="page.title"
       :codeStyle="page.isCode"
       class="floating-header"
+      @update-side-nav="handleSideNavUpdate"
     />
     <div class="border">
       <!-- second header used as a spacer -->
@@ -79,6 +80,16 @@
       apiDocs: {
         type: Boolean,
         default: false,
+      },
+    },
+    data() {
+    return {
+      isSideNavVisible: false, // Track state received from child
+      };
+    },
+    methods: {
+    handleSideNavUpdate(visible) {
+      this.isSideNavVisible = visible; // Update parent state
       },
     },
     computed: {
@@ -171,12 +182,42 @@
     top: 0;
     right: 0;
     left: $nav-width;
-    z-index: 100;
+    z-index: 99;
   }
+
+  @media screen and (max-width: 768px) {
+    .floating-header {
+      left: 0;
+
+    }
+    
+  }
+
+.side-nav {
+  // display: block; 
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    // display: none; 
+    transform: translateX(-100%);
+  }
+
+  .side-nav.show {
+    transform: translateX(0);
+  }
+}
 
   .content-wrapper {
     margin-left: $nav-width;
   }
+
+  @media (max-width: 768px) { 
+  .content-wrapper {
+    margin-left: 0;
+  }
+}
 
   .border {
     border-left: 1px solid $border-color;
