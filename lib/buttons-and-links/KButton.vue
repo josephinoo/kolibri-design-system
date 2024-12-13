@@ -8,8 +8,6 @@
     :type="type"
     :disabled="disabled"
     tabindex="0"
-    :aria-haspopup="hasMenuSlot ? 'menu' : undefined"
-    :aria-expanded="hasMenuSlot ? String(isExpanded) : undefined"
     @click="handleClick"
     @keyup.enter.stop.prevent="handlePressEnter"
     @mouseenter="hovering = true"
@@ -119,7 +117,6 @@
     data() {
       return {
         hovering: false,
-        isExpanded: false,
       };
     },
     computed: {
@@ -161,20 +158,13 @@
         }
         return { ...styles };
       },
-      hasMenuSlot() {
-        return !!this.$slots.menu;
-      },
     },
     methods: {
       handleClick(event) {
         this.blurWhenClicked();
-        if (this.hasMenuSlot) {
-          this.isExpanded = !this.isExpanded;
-        }
         /**
          * Emitted when the button is triggered
          */
-
         this.$emit('click', event);
       },
       handlePressEnter(event) {
@@ -191,9 +181,6 @@
         if (this.htmlTag === 'a') {
           this.$el.blur();
         }
-      },
-      setExpanded(expanded) {
-        this.isExpanded = expanded;
       },
     },
   };

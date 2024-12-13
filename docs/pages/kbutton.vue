@@ -53,23 +53,6 @@
           />
         </KButtonGroup>
       </DocsShow>
-      <p>
-        When using KButton with a dropdown menu, it automatically adds appropriate ARIA attributes:
-        <code>aria-haspopup="menu"</code> and <code>aria-expanded</code> for accessibility.
-      </p>
-      <DocsShow>
-        <KButton text="Dropdown Menu">
-          <template #menu>
-            <KDropdownMenu
-              :options="[
-                { label: 'Option 1', value: '1' },
-                { label: 'Option 2', value: '2' },
-                { label: 'Option 3', value: '3' }
-              ]"
-            />
-          </template>
-        </KButton>
-      </DocsShow>
     </DocsPageSection>
     <DocsPageSection
       title="Related"
