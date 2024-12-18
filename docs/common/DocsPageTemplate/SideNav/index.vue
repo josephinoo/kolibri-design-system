@@ -1,5 +1,4 @@
 <template>
-
   <div class="nav-wrapper">
     <nav
       ref="links"
@@ -8,13 +7,17 @@
     >
       <template if="loaded">
         <h1 class="header">
+          <KIconButton
+            icon="close"
+            @click="closeSideNav"
+            class="close-icon"
+          />
           <KLogo
             altText="Design System"
             size="60"
             :showBackground="true"
           />
           <span class="header-text">Design System</span>
-          <span @click="closeSideNav"> <KIcon icon="close"/></span>
         </h1>
 
         <DocsFilter v-model="filterText" />
@@ -32,12 +35,9 @@
     <!-- used to help indicate that there is more to see if one scrolls down -->
     <div class="bottom-gradient"></div>
   </div>
-
 </template>
 
-
 <script>
-
   import throttle from 'lodash/throttle';
   import NavSectionList from './NavSectionList';
   import { termList, matches } from '~/common/DocsFilter/utils';
@@ -105,12 +105,9 @@
       },
     },
   };
-
 </script>
 
-
 <style lang="scss" scoped>
-
   @import '~/assets/definitions';
 
   .header {
@@ -170,4 +167,13 @@
     margin-top: 16px;
   }
 
+  .close-icon {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .close-icon {
+      display: block !important;
+    }
+  }
 </style>
