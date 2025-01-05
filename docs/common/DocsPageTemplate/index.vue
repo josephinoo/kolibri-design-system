@@ -1,7 +1,17 @@
 <template>
 
   <div class="content-wrapper">
-    <SideNav :class="{ show: isSideNavVisible, 'side-nav': true }" @update-side-nav="handleSideNavUpdate"/>
+    <SideNav
+      :class="{ show: isSideNavVisible, 'side-nav': true }"
+      @update-side-nav="handleSideNavUpdate"
+    />
+
+    <div
+      v-if="isSideNavVisible"
+      class="overlay"
+      @click="handleSideNavUpdate(false)"
+    ></div>
+
     <Header
       :sections="pageSections"
       :title="page.title"
@@ -9,6 +19,7 @@
       class="floating-header"
       @update-side-nav="handleSideNavUpdate"
     />
+
     <div class="border">
       <!-- second header used as a spacer -->
       <Header
@@ -83,14 +94,9 @@
       },
     },
     data() {
-    return {
-      isSideNavVisible: false, // Track state received from child
+      return {
+        isSideNavVisible: false, // Track state received from child
       };
-    },
-    methods: {
-    handleSideNavUpdate(visible) {
-      this.isSideNavVisible = visible; // Update parent state
-      },
     },
     computed: {
       page() {
@@ -163,6 +169,11 @@
         return sections;
       },
     },
+    methods: {
+      handleSideNavUpdate(visible) {
+        this.isSideNavVisible = visible; // Update parent state
+      },
+    },
     head() {
       return {
         title: this.fullTitle,
@@ -176,48 +187,46 @@
 <style lang="scss" scoped>
 
   @import '~/assets/definitions';
+  @import '../../../lib/styles/definitions';
 
   .floating-header {
     position: fixed;
     top: 0;
     right: 0;
     left: $nav-width;
-    z-index: 99;
+    z-index: 95;
   }
 
   @media screen and (max-width: 768px) {
     .floating-header {
       left: 0;
-
     }
-    
   }
 
-.side-nav {
-  // display: block; 
-  transform: translateX(0);
-}
-
-@media (max-width: 768px) {
   .side-nav {
-    // display: none; 
-    transform: translateX(-100%);
+    transform: translateX(0);
+    @extend %dropshadow-2dp;
   }
 
-  .side-nav.show {
-    transform: translateX(0);
+  @media (max-width: 768px) {
+    .side-nav {
+      transform: translateX(-100%);
+    }
+
+    .side-nav.show {
+      transform: translateX(0);
+    }
   }
-}
 
   .content-wrapper {
     margin-left: $nav-width;
   }
 
-  @media (max-width: 768px) { 
-  .content-wrapper {
-    margin-left: 0;
+  @media (max-width: 768px) {
+    .content-wrapper {
+      margin-left: 0;
+    }
   }
-}
 
   .border {
     border-left: 1px solid $border-color;
@@ -227,6 +236,24 @@
     padding-right: 32px;
     padding-bottom: 400px;
     padding-left: 32px;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  @media (min-width: 768px) {
+    .overlay {
+      display: none;
+    }
   }
 
 </style>

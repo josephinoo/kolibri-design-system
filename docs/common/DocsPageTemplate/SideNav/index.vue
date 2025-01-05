@@ -1,4 +1,5 @@
 <template>
+
   <div class="nav-wrapper">
     <nav
       ref="links"
@@ -9,8 +10,8 @@
         <h1 class="header">
           <KIconButton
             icon="close"
-            @click="closeSideNav"
             class="close-icon"
+            @click="closeSideNav"
           />
           <KLogo
             altText="Design System"
@@ -35,9 +36,12 @@
     <!-- used to help indicate that there is more to see if one scrolls down -->
     <div class="bottom-gradient"></div>
   </div>
+
 </template>
 
+
 <script>
+
   import throttle from 'lodash/throttle';
   import NavSectionList from './NavSectionList';
   import { termList, matches } from '~/common/DocsFilter/utils';
@@ -105,9 +109,12 @@
       },
     },
   };
+
 </script>
 
+
 <style lang="scss" scoped>
+
   @import '~/assets/definitions';
 
   .header {
@@ -176,4 +183,5 @@
       display: block !important;
     }
   }
+
 </style>

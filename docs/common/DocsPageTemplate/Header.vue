@@ -1,4 +1,5 @@
 <template>
+
   <div
     class="header"
     :class="{ scrolled }"
@@ -7,8 +8,8 @@
       <h1 class="header-text">
         <KIconButton
           icon="menu"
-          @click="toggleSideNav"
           class="menu"
+          @click="toggleSideNav"
         />
         <span :class="{ code: codeStyle }">{{ title }}</span>
         <a
@@ -42,9 +43,12 @@
       </li>
     </ul>
   </div>
+
 </template>
 
+
 <script>
+
   import BranchLink from './BranchLink.vue';
 
   export default {
@@ -96,9 +100,12 @@
       },
     },
   };
+
 </script>
 
+
 <style lang="scss" scoped>
+
   @import '~/assets/definitions';
 
   .header {
@@ -167,4 +174,5 @@
       display: inline-block !important;
     }
   }
+
 </style>
