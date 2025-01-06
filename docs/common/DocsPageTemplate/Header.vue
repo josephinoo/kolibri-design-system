@@ -152,6 +152,10 @@
     font-weight: 400;
   }
 
+  .header-text > * {
+    vertical-align: middle;
+  }
+
   .icon-link {
     width: 14px;
     height: 14px;

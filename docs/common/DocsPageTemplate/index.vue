@@ -250,10 +250,4 @@
     background: rgba(0, 0, 0, 0.7);
   }
 
-  @media (min-width: 768px) {
-    .overlay {
-      display: none;
-    }
-  }
-
 </style>
