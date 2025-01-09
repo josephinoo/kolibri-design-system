@@ -29,11 +29,4 @@ jobs:
           github-token: ${{ steps.generate-token.outputs.token }}
           script: |
             const { updateReleasedItemsStatuses } = require('./.github/githubUtils.js');
-            let ghContext; // get context from input if its a workflow_dispatch event
-            if (context.payload.release) {
-              ghContext = context;
-            } else {
-              ghContext = context.payload.inputs.context;
-              ghContext = JSON.parse(ghContext);
-            }
-            updateReleasedItemsStatuses(ghContext, github);
+            updateReleasedItemsStatuses(context, github);
