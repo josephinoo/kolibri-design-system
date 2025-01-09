@@ -3,6 +3,14 @@ const GithubAPI = require('./GithubAPI');
 const ITERATION_BACKLOG_PROJECT_NUMBER = 15;
 const KDS_ROADMAP_PROJECT_NUMBER = 29;
 
+/**
+ * Will synchronize the KDS Roadmap project statuses synced
+ * with the Iteration backlog project items statuses. So if an issue belongs to
+ * both projects. The status of the issue in the KDS Roadmap project will be updated
+ * to match the status of the issue in the Iteration backlog project.
+ * 
+ * All issues in KDS Roadmap that already had a status of "RELEASED" will be ignored.
+ */
 const synchronizeProjectsStatuses = async (context, github) => {
   const sourceNumber = ITERATION_BACKLOG_PROJECT_NUMBER;
   const targetNumber = KDS_ROADMAP_PROJECT_NUMBER;
@@ -38,6 +46,7 @@ const synchronizeProjectsStatuses = async (context, github) => {
     const sourceProjectItem = item.content.projectItems?.nodes.find((sourceItem) => (
       sourceItem.project.id === sourceProject.id
     ));
+    // Status that the issue has in the source project
     const sourceStatus = sourceProjectItem?.status?.value;
     if (!sourceStatus) {
       return false;
@@ -86,6 +95,18 @@ const extractPullRequestNumbers = (releaseBody, owner) => {
   return uniquePrNumbers;
 };
 
+/**
+ * Run on release published event. Will update these items in the KDS Roadmap project:
+ * * the status of the PRs' linked issues to "Released"
+ * * update the "Released in" field with the release version.
+ *   * If the issue or pr already has a "Released in" value, the release version will be
+ *     appended to it (e.g. "v4.6.0,v5.0.0-rc7")
+ * 
+ * If a PR doesn't have a linked issue, we will take the PR as reference instead of an issue.
+ * 
+ * If an issue or a PR doesnt belong to the KDS Roadmap project, it will be added to the project.
+ * 
+ */
 const updateReleasedItemsStatuses = async (context, github) => {
   const body = context.payload.release.body;
   const owner = context.payload.repository.owner.login;
