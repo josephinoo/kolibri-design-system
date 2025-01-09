@@ -24,7 +24,7 @@ async function writeApi() {
   const simpleFiles = Array.from(GlobSync('**/K*.{vue,js}', { cwd: componentFolder }));
   const output = {};
 
-  for (const filename of Array.from(simpleFiles).filter(notTest)) {
+  for (const filename of simpleFiles.filter(notTest)) {
     const filepath = path.resolve(componentFolder, filename);
     try {
       const val = await docGenAPI.parse(filepath);
