@@ -3,7 +3,10 @@
   <component :is="wrapper">
     <!-- Accessibility properties for the overlay -->
     <KFocusTrap>
-      <transition name="modal-fade" appear>
+      <transition
+        name="modal-fade"
+        appear
+      >
         <div
           id="modal-window"
           ref="modal-overlay"
