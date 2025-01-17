@@ -21,10 +21,9 @@
             :style="[
               modalSizeStyles,
               { background: $themeTokens.surface },
-              containsKSelect ? { overflowY: 'unset' } : { overflowY: 'auto' }
+              containsKSelect ? { overflowY: 'unset' } : { overflowY: 'auto' },
             ]"
           >
-
             <!-- Modal Title -->
             <h1
               id="modal-title"
@@ -41,7 +40,8 @@
               </span>
             </h1>
 
-            <!-- Stop propagation of enter key to prevent the submit event from being emitted twice -->
+            <!-- Stop propagation of enter key 
+             to prevent the submit event from being emitted twice -->
             <form
               class="form"
               @submit.prevent="emitSubmitEvent"
@@ -51,13 +51,18 @@
               <div
                 ref="content"
                 class="content"
-                :style="[ contentSectionMaxHeight, scrollShadow ? {
-                  borderTop: `1px solid ${$themeTokens.fineLine}`,
-                  borderBottom: `1px solid ${$themeTokens.fineLine}`,
-                } : {} ]"
+                :style="[
+                  contentSectionMaxHeight,
+                  scrollShadow
+                    ? {
+                      borderTop: `1px solid ${$themeTokens.fineLine}`,
+                      borderBottom: `1px solid ${$themeTokens.fineLine}`,
+                    }
+                    : {},
+                ]"
                 :class="{
                   'scroll-shadow': scrollShadow,
-                  'contains-kselect': containsKSelect
+                  'contains-kselect': containsKSelect,
                 }"
               >
                 <!-- @slot Main content of modal -->
@@ -171,6 +176,7 @@
         validator(val) {
           if (typeof val === 'string') {
             if (!SIZE_STRINGS.includes(val)) {
+              // eslint-disable-next-line no-console
               console.error(`'${val}' is not one of: ${SIZE_STRINGS}`);
               return false;
             }
@@ -240,13 +246,15 @@
     },
     created() {
       if (this.$props.cancelText && !this.$listeners.cancel) {
+        // eslint-disable-next-line no-console
         console.error(
-          'A "cancelText" has been set, but there is no "cancel" listener. The "cancel" button may not work correctly.'
+          'A "cancelText" has been set, but there is no "cancel" listener. The "cancel" button may not work correctly.',
         );
       }
       if (this.$props.submitText && !this.$listeners.submit) {
+        // eslint-disable-next-line no-console
         console.error(
-          'A "submitText" has been set, but there is no "submit" listener. The "submit" button may not work correctly.'
+          'A "submitText" has been set, but there is no "submit" listener. The "submit" button may not work correctly.',
         );
       }
     },
@@ -292,7 +300,7 @@
        * If there is not enough vertical space, create a vertically scrollable area and a
        * scroll shadow
        */
-      updateContentSectionStyle: debounce(function() {
+      updateContentSectionStyle: debounce(function () {
         if (this.$refs.title && this.$refs.actions) {
           const maxContentHeightCheck =
             this.windowHeight -
@@ -307,8 +315,9 @@
             this.scrollShadow = this.maxContentHeight < this.$refs.content.scrollHeight;
           }
 
-          // make sure that overflow-y won't be updated to 'auto' if this function is running for the first time
-          // (otherwise Firefox would add a vertical scrollbar right away) + don't apply if modal contains KSelect
+          // make sure that overflow-y won't be updated to 'auto' if this function is running
+          // for the first time (otherwise Firefox would add a vertical scrollbar right away)
+          // + don't apply if modal contains KSelect
           // (otherwise KSelect will be trapped inside modal if KSelect is opened a second time)
           if (this.$refs.content.clientHeight !== 0 && !this.containsKSelect) {
             // add a vertical scrollbar if content doesn't fit
@@ -427,13 +436,18 @@
   }
 
   .scroll-shadow {
-    background: linear-gradient(white 30%, hsla(0, 0%, 100%, 0)),
-      linear-gradient(hsla(0, 0%, 100%, 0) 10px, white 70%) bottom,
+    background:
+      linear-gradient(white 30%, hsla(0deg, 0%, 100%, 0)),
+      linear-gradient(hsla(0deg, 0%, 100%, 0) 10px, white 70%) bottom,
       radial-gradient(at top, rgba(0, 0, 0, 0.2), transparent 70%),
       radial-gradient(at bottom, rgba(0, 0, 0, 0.2), transparent 70%) bottom;
     background-repeat: no-repeat;
     background-attachment: local, local, scroll, scroll;
-    background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
+    background-size:
+      100% 20px,
+      100% 20px,
+      100% 10px,
+      100% 10px;
   }
 
   .contains-kselect {
@@ -443,6 +457,7 @@
   .actions {
     padding: 24px;
     text-align: right;
+
     button {
       margin: 0;
     }
