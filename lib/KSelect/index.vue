@@ -7,8 +7,6 @@
    The formatting has been changed to match our linters. We may eventually
    want to simply consolidate it with our component and remove any unused
    functionality.
-
-   BELOW: KModal targets KeenUiSelect by using div.ui-select selector
   -->
   <div
     class="ui-select"
