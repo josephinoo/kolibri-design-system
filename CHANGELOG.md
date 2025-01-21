@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#879]
+  - **Description:** Adds logic to mount overlay layer if it needed when we call getOverlayEl.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/878.
+  - **Components:** useKOverlay.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#879]: https://github.com/learningequality/kolibri-design-system/pull/879
+
+
+
 - [#893]
   - **Description:** Bump kds version to 5.0.0-rc12.
   - **Products impact:** -.
