@@ -14,18 +14,13 @@
           @keyup.esc.stop="emitCancelEvent"
           @keyup.enter="handleEnter"
         >
-          <!-- KeenUiSelect targets modal by using div.modal selector -->
           <div
             ref="modal"
             class="modal"
             :tabindex="0"
             role="dialog"
             aria-labelledby="modal-title"
-            :style="[
-              modalSizeStyles,
-              { background: $themeTokens.surface },
-              containsKSelect ? { overflowY: 'unset' } : { overflowY: 'auto' },
-            ]"
+            :style="modalStyles"
           >
             <!-- Modal Title -->
             <h1
@@ -65,7 +60,6 @@
                 ]"
                 :class="{
                   'scroll-shadow': scrollShadow,
-                  'contains-kselect': containsKSelect,
                 }"
               >
                 <!-- @slot Main content of modal -->
@@ -216,17 +210,18 @@
       return {
         lastFocus: null,
         maxContentHeight: '1000',
-        containsKSelect: false,
         scrollShadow: false,
         delayedEnough: false,
       };
     },
     computed: {
-      modalSizeStyles() {
+      modalStyles() {
         return {
           'max-width': `${this.maxModalWidth - 32}px`,
           'max-height': `${this.windowHeight - 32}px`,
           width: this.modalWidth,
+          background: this.$themeTokens.surface,
+          overflowY: 'auto',
         };
       },
       modalWidth() {
@@ -278,9 +273,6 @@
       window.addEventListener('focus', this.focusElementTest, true);
       window.setTimeout(() => (this.delayedEnough = true), 500);
 
-      // if modal contains KSelect, special classes & styles will be applied
-      const kSelectCheck = document.querySelector('div.modal div.ui-select');
-      this.containsKSelect = !!kSelectCheck;
       this.updateContentSectionStyle();
     },
     updated() {
@@ -320,9 +312,7 @@
 
           // make sure that overflow-y won't be updated to 'auto' if this function is running
           // for the first time (otherwise Firefox would add a vertical scrollbar right away)
-          // + don't apply if modal contains KSelect
-          // (otherwise KSelect will be trapped inside modal if KSelect is opened a second time)
-          if (this.$refs.content.clientHeight !== 0 && !this.containsKSelect) {
+          if (this.$refs.content.clientHeight !== 0) {
             // add a vertical scrollbar if content doesn't fit
             if (this.$refs.content.scrollHeight > this.$refs.content.clientHeight) {
               this.$refs.content.style.overflowY = 'auto';
@@ -451,10 +441,6 @@
       100% 20px,
       100% 10px,
       100% 10px;
-  }
-
-  .contains-kselect {
-    overflow: unset;
   }
 
   .actions {
