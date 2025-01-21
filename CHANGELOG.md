@@ -7,6 +7,30 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#877]
+  - **Description:** Teleport KSelect dropdown to the Overlay layer using Popper.
+  - **Products impact:** bugfix.
+  - **Addresses:**https://github.com/learningequality/kolibri-design-system/issues/324, https://github.com/learningequality/kolibri-design-system/issues/690.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#877]: https://github.com/learningequality/kolibri-design-system/pull/877
+
+- [#877]
+  - **Description:** Removes internal KModal calculations to modify its content height if it had a KSelect inside.
+  - **Products impact:** bugfix.
+  - **Addresses:**https://github.com/learningequality/kolibri-design-system/issues/324.
+  - **Components:** KModal.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#877]: https://github.com/learningequality/kolibri-design-system/pull/877
+
+
+
 - [#879]
   - **Description:** Adds logic to mount overlay layer if it needed when we call getOverlayEl.
   - **Products impact:** bugfix.
