@@ -362,7 +362,12 @@
         }
         // focus has escaped the modal - put it back!
         if (!this.$refs.modal.contains(target)) {
-          this.focusModal();
+          this.$nextTick(() => {
+            // flush any pending DOM/focus updates to prevent infinite recursion
+            // from two components fighting over focus
+            // https://github.com/learningequality/studio/issues/4772
+            this.focusModal();
+          });
         }
       },
     },
