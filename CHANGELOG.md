@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#823]
+  - **Description:** Bump globby from 6.1.0 to 14.0.2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#823]: https://github.com/learningequality/kolibri-design-system/pull/823
+
+
+
 - [#877]
   - **Description:** Teleport KSelect dropdown to the Overlay layer using Popper.
   - **Products impact:** bugfix.
