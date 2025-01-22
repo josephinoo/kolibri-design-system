@@ -7,6 +7,22 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#862]
+  - **Description:** Improves docs mobile responsiveness by adding a menu hamburguer to open docs sidenav on mobile devices.
+  - **Products impact:** bugfix
+  - **Addresses:** N/A
+  - **Components:** KDS Docs: SideNav, Header
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**
+
+[#862]: https://github.com/learningequality/kolibri-design-system/pull/862
+  - The new toggle functionality allows users to show and hide the side navigation bar, with a close button to close it manually.
+  - The overlay provides a better user experience by dimming the content when the sidebar is open in mobile view.
+  - No breaking changes were introduced, so this update can be safely merged into existing applications.
+
+
+
 - [#904]
   - **Description:** Transform project numbers to int in the Sync KDS Roadmap Project Statuses workflow.
   - **Products impact:** -.
