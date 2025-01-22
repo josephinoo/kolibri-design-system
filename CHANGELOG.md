@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#903]
+  - **Description:** Fixes infinite recursive error when KModal request the focus.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/studio/issues/4772, https://github.com/learningequality/kolibri-design-system/issues/228.
+  - **Components:** KModal.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#903]: https://github.com/learningequality/kolibri-design-system/pull/903
+
+
+
 - [#862]
   - **Description:** Improves docs mobile responsiveness by adding a menu hamburguer to open docs sidenav on mobile devices.
   - **Products impact:** bugfix
