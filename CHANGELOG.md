@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#904]
+  - **Description:** Transform project numbers to int in the Sync KDS Roadmap Project Statuses workflow.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#904]: https://github.com/learningequality/kolibri-design-system/pull/904
+
+
+
 - [#882]
   - **Description:** Adds Adds two workflows to keep KDS Roadmap statuses updated
   - **Products impact:** none.
