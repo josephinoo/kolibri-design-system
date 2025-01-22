@@ -25,6 +25,8 @@ const synchronizeProjectsStatuses = async ({context, github, sourceNumber, targe
     return targetStatus ? statusMap[targetStatus] : "BACKLOG";
   }
 
+  sourceNumber = parseInt(sourceNumber);
+  targetNumber = parseInt(targetNumber);
   const githubAPI = new GithubAPI(context.repo.owner, github);
   const { sourceProject, targetProject } = await githubAPI.getSourceAndTargetProjects({ sourceNumber, targetNumber });
 
@@ -103,6 +105,7 @@ const extractPullRequestNumbers = (releaseBody, owner) => {
  * 
  */
 const updateReleasedItemsStatuses = async ({context, github, projectNumber}) => {
+  projectNumber = parseInt(projectNumber);
   const body = context.payload.release.body;
   const owner = context.payload.repository.owner.login;
   const repo = context.payload.repository.name;
