@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#898]
+  - **Description:** Fixes KModal backdrop entrance transition not being smooth.
+  - **Products impact : bugfix .
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/848.
+  - **Components:** KModal
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#898]: https://github.com/learningequality/kolibri-design-system/pull/898
+
+
+
 - [#823]
   - **Description:** Bump globby from 6.1.0 to 14.0.2
   - **Products impact:** Dev Dependency upgrade
