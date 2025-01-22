@@ -27,8 +27,13 @@ jobs:
 
       - name: Check and Sync Project Statuses
         uses: actions/github-script@v7
+        env:
+          ITERATION_BACKLOG_PROJECT_NUMBER: ${{ secrets.ITERATION_BACKLOG_PROJECT_NUMBER }}
+          KDS_ROADMAP_PROJECT_NUMBER: ${{ secrets.KDS_ROADMAP_PROJECT_NUMBER }}
         with:
           github-token: ${{ steps.generate-token.outputs.token }}
           script: |
             const { synchronizeProjectsStatuses } = require('./.github/githubUtils.js');
-            synchronizeProjectsStatuses(context, github);
+            const sourceNumber = process.env.ITERATION_BACKLOG_PROJECT_NUMBER;
+            const targetNumber = process.env.KDS_ROADMAP_PROJECT_NUMBER;
+            synchronizeProjectsStatuses({context, github, sourceNumber, targetNumber});

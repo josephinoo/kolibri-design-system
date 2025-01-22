@@ -1,8 +1,5 @@
 const GithubAPI = require('./GithubAPI');
 
-const ITERATION_BACKLOG_PROJECT_NUMBER = 15;
-const KDS_ROADMAP_PROJECT_NUMBER = 29;
-
 /**
  * Will synchronize the KDS Roadmap project statuses synced
  * with the Iteration backlog project items statuses. So if an issue belongs to
@@ -11,9 +8,7 @@ const KDS_ROADMAP_PROJECT_NUMBER = 29;
  * 
  * All issues in KDS Roadmap that already had a status of "RELEASED" will be ignored.
  */
-const synchronizeProjectsStatuses = async (context, github) => {
-  const sourceNumber = ITERATION_BACKLOG_PROJECT_NUMBER;
-  const targetNumber = KDS_ROADMAP_PROJECT_NUMBER;
+const synchronizeProjectsStatuses = async ({context, github, sourceNumber, targetNumber}) => {
   const getTargetStatus = (sourceStatus) => {
     const statusMap = {
       "IN REVIEW": "IN REVIEW",
@@ -107,7 +102,7 @@ const extractPullRequestNumbers = (releaseBody, owner) => {
  * If an issue or a PR doesnt belong to the KDS Roadmap project, it will be added to the project.
  * 
  */
-const updateReleasedItemsStatuses = async (context, github) => {
+const updateReleasedItemsStatuses = async ({context, github, projectNumber}) => {
   const body = context.payload.release.body;
   const owner = context.payload.repository.owner.login;
   const repo = context.payload.repository.name;
@@ -121,7 +116,7 @@ const updateReleasedItemsStatuses = async (context, github) => {
 
   const githubAPI = new GithubAPI(owner, github);
   const prs = await githubAPI.getPRsWithLinkedIssues(prNumbers, repo);
-  const project = await githubAPI.getProject(KDS_ROADMAP_PROJECT_NUMBER); 
+  const project = await githubAPI.getProject(projectNumber); 
 
   const contentItemsToAddToProject = [];
   const projectItemsToUpdate = [];
