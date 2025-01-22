@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#882]
+  - **Description:** Adds Adds two workflows to keep KDS Roadmap statuses updated
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#882]: https://github.com/learningequality/kolibri-design-system/pull/882
+
+
+
 - [#898]
   - **Description:** Fixes KModal backdrop entrance transition not being smooth.
   - **Products impact : bugfix .
