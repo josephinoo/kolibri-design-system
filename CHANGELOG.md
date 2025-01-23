@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#907]
+  - **Description:** Skip sync projects job if the owner is not LearningEquality
+  - **Products impact:**  -.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/906.
+  - **Components:** -.
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -.
+
+[#907]: https://github.com/learningequality/kolibri-design-system/pull/907
+
+
+
 - [#903]
   - **Description:** Fixes infinite recursive error when KModal request the focus.
   - **Products impact:** bugfix.
