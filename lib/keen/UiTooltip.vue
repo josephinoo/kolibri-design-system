@@ -85,6 +85,13 @@
             },
           },
         },
+        onTrigger: (tippy) => {
+          const hideTooltip = () => {
+            tippy.hide();
+            document.removeEventListener('scroll', hideTooltip, true);
+          };
+          document.addEventListener('scroll', hideTooltip, true);
+        },
       };
 
       if (!this.appendToBody) {

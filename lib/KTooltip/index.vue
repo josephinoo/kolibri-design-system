@@ -8,6 +8,7 @@
     :options="options"
     :appendToEl="appendToEl"
     trigger="hover"
+    closeOnScroll
   >
     <div
       dir="auto"
